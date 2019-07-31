@@ -18,13 +18,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="CheckListItemCell" rowHeight="101" id="qHD-B2-koD" customClass="CkeckListItemCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="CheckListItemCell" rowHeight="101" id="qHD-B2-koD" customClass="CheckListItemCell" customModule="CheckListToDo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="101"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qHD-B2-koD" id="KIQ-tS-gnX">
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="100.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKG-ab-EvS">
+                                            <rect key="frame" x="20" y="20" width="330" height="60.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="gKG-ab-EvS" firstAttribute="top" secondItem="KIQ-tS-gnX" secondAttribute="top" constant="20" id="E9H-Lm-czd"/>
+                                        <constraint firstAttribute="trailing" secondItem="gKG-ab-EvS" secondAttribute="trailing" constant="20" id="KB2-cJ-ZKx"/>
+                                        <constraint firstItem="gKG-ab-EvS" firstAttribute="leading" secondItem="KIQ-tS-gnX" secondAttribute="leading" constant="20" id="TSj-z0-BB2"/>
+                                        <constraint firstAttribute="bottom" secondItem="gKG-ab-EvS" secondAttribute="bottom" constant="20" id="fTh-x3-dGH"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="lblText" destination="gKG-ab-EvS" id="ieA-IX-ATP"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
