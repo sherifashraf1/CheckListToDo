@@ -12,6 +12,20 @@ class CheckListViewController: UITableViewController {
     
     var items : [CheckListItem]
     
+    @IBAction func addRow(_ sender: Any) {
+        
+        let newRowIndex = items.count
+        let item = CheckListItem()
+        item.text = "New Row Added"
+        item.checked = true
+        items.append(item)
+        let indexPath = IndexPath(row: newRowIndex, section: 0)
+        let indexPathes = [indexPath]
+        tableView.insertRows(at: indexPathes, with: .automatic)
+        
+    }
+    
+    
     
     
     required init?(coder aDecoder: NSCoder) {
@@ -45,21 +59,20 @@ class CheckListViewController: UITableViewController {
         super.init(coder: aDecoder)
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CheckListItemCell", for: indexPath) as! CheckListItemCell
         //Note We can Use A viewWithTag() to access a label in the cell and any other comtrols or view with give them a tag......
         // In this case and ordinary wes use the Outlet
-
         let item = items[indexPath.row]
         cell.lblText.text = item.text
         configureCheckMark(for: cell, at: item)
@@ -82,9 +95,7 @@ class CheckListViewController: UITableViewController {
             let item = items[indexPath.row]
             item.toggleCheck()
             configureCheckMark(for: cell, at: item)
-            
             tableView.deselectRow(at: indexPath, animated: true)
-            //tableView.reloadData()
         }
     }
     
