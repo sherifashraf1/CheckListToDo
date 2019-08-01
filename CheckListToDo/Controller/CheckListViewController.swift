@@ -9,7 +9,7 @@
 import UIKit
 
 class CheckListViewController: UITableViewController {
-
+    
     var items : [CheckListItem]
     
     
@@ -50,9 +50,9 @@ class CheckListViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return items.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,13 +62,13 @@ class CheckListViewController: UITableViewController {
 
         let item = items[indexPath.row]
         cell.lblText.text = item.text
-        configureCheckMark(for: cell, at: indexPath)
+        configureCheckMark(for: cell, at: item)
         return cell
     }
     
-    func configureCheckMark(for cell : UITableViewCell , at indexpath : IndexPath){
-        
-        var item = items[indexpath.row]
+    
+    
+    func configureCheckMark(for cell : UITableViewCell , at item : CheckListItem){
         if item.checked{
             cell.accessoryType = .none
         }else{
@@ -76,16 +76,16 @@ class CheckListViewController: UITableViewController {
         }
         
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath){
-        let item = items[indexPath.row]
-        item.checked = !item.checked
-        configureCheckMark(for: cell, at: indexPath)
-
-        tableView.deselectRow(at: indexPath, animated: true)
-        //tableView.reloadData()
-    }
+            let item = items[indexPath.row]
+            item.toggleCheck()
+            configureCheckMark(for: cell, at: item)
+            
+            tableView.deselectRow(at: indexPath, animated: true)
+            //tableView.reloadData()
+        }
     }
     
 }
