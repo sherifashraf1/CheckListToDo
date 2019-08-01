@@ -10,17 +10,36 @@ import UIKit
 
 class CheckListViewController: UITableViewController {
 
-    let row0Text = "Walk the dog"
-    let row1Text = "Brush teeth"
-    let row2Text = "Learn iOS development"
-    let row3Text = "Soccer practice"
-    let row4Text = "Eat ice cream"
+    var row0Item : CheckListItem
+    var row1Item : CheckListItem
+    var row2Item : CheckListItem
+    var row3Item : CheckListItem
+    var row4Item : CheckListItem
     
-    var row0Checked = true
-    var row1Checked = true
-    var row2Checked = true
-    var row3Checked = true
-    var row4Checked = true
+    
+    required init?(coder aDecoder: NSCoder) {
+        row0Item = CheckListItem()
+        row0Item.text = "Walk the dog"
+        row0Item.checked = true
+        
+        row1Item = CheckListItem()
+        row1Item.text = "Brush teeth"
+        row1Item.checked = true
+        
+        row2Item = CheckListItem()
+        row2Item.text = "Learn iOS development"
+        row2Item.checked = true
+        
+        row3Item = CheckListItem()
+        row3Item.text = "Soccer practice"
+        row3Item.checked = true
+        
+        row4Item = CheckListItem()
+        row4Item.text = "Eat ice cream"
+        row4Item.checked = true
+        super.init(coder: aDecoder)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,15 +56,15 @@ class CheckListViewController: UITableViewController {
         // In this case and ordinary wes use the Outlet
 
         if (indexPath.row  == 0){
-            cell.lblText.text = row0Text
+            cell.lblText.text = row0Item.text
         }else if (indexPath.row  == 1){
-            cell.lblText.text = row1Text
+            cell.lblText.text = row1Item.text
         }else if (indexPath.row  == 2){
-            cell.lblText.text = row2Text
+            cell.lblText.text = row2Item.text
         }else if (indexPath.row  == 3){
-            cell.lblText.text = row3Text
+            cell.lblText.text = row3Item.text
         }else if (indexPath.row  == 4){
-            cell.lblText.text = row4Text
+            cell.lblText.text = row4Item.text
         }
         
         configureCheckMark(for: cell, at: indexPath)
@@ -56,30 +75,26 @@ class CheckListViewController: UITableViewController {
         var isChecked = false
         
         if indexpath.row == 0{
-            row0Checked = !row0Checked
-            isChecked = row0Checked
-        }
-        if indexpath.row == 1{
-            row1Checked = !row1Checked
-            isChecked = row1Checked
-        }
-        if indexpath.row == 2{
-            row2Checked = !row2Checked
-            isChecked = row2Checked
-        }
-        if indexpath.row == 3{
-            row3Checked = !row3Checked
-            isChecked = row3Checked
-        }
-        if indexpath.row == 4{
-            row4Checked = !row4Checked
-            isChecked = row4Checked
+            row0Item.checked = !row0Item.checked
+            isChecked = row0Item.checked
+        }else if indexpath.row == 1{
+            row1Item.checked = !row1Item.checked
+            isChecked = row1Item.checked
+        }else if indexpath.row == 2{
+            row2Item.checked = !row2Item.checked
+            isChecked = row2Item.checked
+        }else if indexpath.row == 3{
+            row3Item.checked = !row3Item.checked
+            isChecked = row3Item.checked
+        }else if indexpath.row == 4{
+            row4Item.checked = !row4Item.checked
+            isChecked = row4Item.checked
         }
         
         if isChecked{
-            cell.accessoryType = .none
-        }else{
             cell.accessoryType = .checkmark
+        }else{
+            cell.accessoryType = .none
         }
         
     }
