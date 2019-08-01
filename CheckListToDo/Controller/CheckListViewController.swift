@@ -16,7 +16,12 @@ class CheckListViewController: UITableViewController {
         
         let newRowIndex = items.count
         let item = CheckListItem()
-        item.text = "New Row Added"
+        
+        var titles = ["Sherif Ashraf Hassan" , "Osama Ahmed Osman" , "iOS Development" , "IDEA" , "Amr Diab"]
+
+        let randomNumber = arc4random_uniform(UInt32(titles.count))
+        let title = titles[Int(randomNumber)]
+        item.text = title
         item.checked = true
         items.append(item)
         let indexPath = IndexPath(row: newRowIndex, section: 0)
@@ -24,9 +29,6 @@ class CheckListViewController: UITableViewController {
         tableView.insertRows(at: indexPathes, with: .automatic)
         
     }
-    
-    
-    
     
     required init?(coder aDecoder: NSCoder) {
         items = [CheckListItem]()
