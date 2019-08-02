@@ -81,7 +81,15 @@ class CheckListViewController: UITableViewController {
         return cell
     }
     
-    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // first we remove from the model (update the model)
+        items.remove(at: indexPath.row)
+        // second show to user the row has been deleted (update the tableview)
+//        let indexPaths = [indexPath]
+//        tableView.deleteRows(at: indexPaths, with: .automatic)
+        
+        tableView.reloadData()
+    }
     
     func configureCheckMark(for cell : UITableViewCell , at item : CheckListItem){
         if item.checked{

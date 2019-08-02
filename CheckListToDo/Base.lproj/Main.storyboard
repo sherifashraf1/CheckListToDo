@@ -52,7 +52,7 @@
                     <navigationItem key="navigationItem" title="CheckLists" id="5Du-Zm-IQ1">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="e0S-PS-lnB">
                             <connections>
-                                <action selector="addRow:" destination="Mf0-gz-KKa" id="h2Q-Y7-W8b"/>
+                                <segue destination="79s-NQ-kTi" kind="show" id="LbF-HC-bRw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -60,6 +60,70 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lxp-PA-CX7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="262" y="127"/>
+        </scene>
+        <!--Add Item-->
+        <scene sceneID="P4s-ad-F0p">
+            <objects>
+                <tableViewController id="79s-NQ-kTi" customClass="AddItemTableViewController" customModule="CheckListToDo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Qhl-vz-iYW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="nR2-MV-CGM">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="59" id="elL-7W-Bhr">
+                                        <rect key="frame" x="0.0" y="35" width="414" height="59"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="elL-7W-Bhr" id="PBl-CB-mNU">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="58.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Item" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KBs-in-rWX">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="58.5"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                    <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="KBs-in-rWX" firstAttribute="leading" secondItem="PBl-CB-mNU" secondAttribute="leading" id="3fp-c7-FWX"/>
+                                                <constraint firstItem="KBs-in-rWX" firstAttribute="top" secondItem="PBl-CB-mNU" secondAttribute="top" id="Odk-bu-WFk"/>
+                                                <constraint firstAttribute="bottom" secondItem="KBs-in-rWX" secondAttribute="bottom" id="TE9-Ht-4qj"/>
+                                                <constraint firstAttribute="trailing" secondItem="KBs-in-rWX" secondAttribute="trailing" id="Uks-yE-Uhq"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="79s-NQ-kTi" id="Ozm-iq-VwX"/>
+                            <outlet property="delegate" destination="79s-NQ-kTi" id="VA7-id-Laj"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Item" id="tac-LP-xKS">
+                        <leftBarButtonItems>
+                            <barButtonItem title=" " id="n12-nj-sUT"/>
+                            <barButtonItem title="Cancel" id="r2W-2p-dvs">
+                                <connections>
+                                    <action selector="cancel" destination="79s-NQ-kTi" id="W77-5f-CR2"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="BgA-00-IiJ">
+                            <connections>
+                                <action selector="done" destination="79s-NQ-kTi" id="7Vo-af-Frh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addItemTextField" destination="KBs-in-rWX" id="IhP-DS-t3C"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3LA-2t-cGz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1005.7971014492755" y="125.89285714285714"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FVs-F2-dqU">
