@@ -10,6 +10,10 @@ import UIKit
 
 class AddItemTableViewController: UITableViewController , UITextFieldDelegate{
     
+    @IBOutlet weak var cancelBarButton: UIBarButtonItem!
+    
+    @IBOutlet weak var doneBarButton: UIBarButtonItem!
+    
     @IBOutlet weak var addItemTextField: UITextField!
     
     override func viewDidLoad() {
@@ -32,6 +36,7 @@ class AddItemTableViewController: UITableViewController , UITextFieldDelegate{
     override func viewWillAppear(_ animated: Bool) {
         addItemTextField.becomeFirstResponder()
         addItemTextField.returnKeyType = .done
+        doneBarButton.isEnabled = false
         
     }
     
@@ -48,5 +53,23 @@ class AddItemTableViewController: UITableViewController , UITextFieldDelegate{
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return nil
     }
+    
+    
+    // this below function allows us to copy and paste and update the textfield
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let oldText = addItemTextField.text
+        let textRange = Range(range, in: oldText!)
+        let newText = oldText?.replacingCharacters(in: textRange!, with: string)
+        
+        if newText!.isEmpty{
+            doneBarButton.isEnabled = false
+        }else {
+            doneBarButton.isEnabled = true
+        }
+        
+        return true
+    }
+    
     
 }

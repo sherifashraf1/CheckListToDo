@@ -122,6 +122,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addItemTextField" destination="KBs-in-rWX" id="IhP-DS-t3C"/>
+                        <outlet property="cancelBarButton" destination="r2W-2p-dvs" id="rUq-wK-hac"/>
+                        <outlet property="doneBarButton" destination="BgA-00-IiJ" id="en9-p3-4q9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3LA-2t-cGz" userLabel="First Responder" sceneMemberID="firstResponder"/>
