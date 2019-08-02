@@ -61,9 +61,16 @@ class CheckListViewController: UITableViewController {
         super.init(coder: aDecoder)
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddItem" {
+        let controller = segue.destination as! AddItemTableViewController
+        controller.delegate = self
+    }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -108,5 +115,24 @@ class CheckListViewController: UITableViewController {
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
+    
+}
+
+extension CheckListViewController : AddItemViewControllerDelegate {
+    func addItemViewControllerDidCancel(_ controller: AddItemTableViewController) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    //updates our tableViewController
+    func addItemViewController(_ controller: AddItemTableViewController, didFinishAdding item: CheckListItem) {
+        let newRowIndex = items.count
+        items.append(item)
+        let indexPath = IndexPath(row: newRowIndex, section: 0)
+        let indexPathes = [indexPath]
+        tableView.insertRows(at: indexPathes, with: .automatic)
+        navigationController?.popViewController(animated: true)
+        
+    }
+    
     
 }

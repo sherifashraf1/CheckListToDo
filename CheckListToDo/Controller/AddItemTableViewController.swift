@@ -8,13 +8,19 @@
 
 import UIKit
 
+protocol AddItemViewControllerDelegate : class {
+    func addItemViewControllerDidCancel(_ controller : AddItemTableViewController)
+    func addItemViewController(_ controller :  AddItemTableViewController , didFinishAdding item : CheckListItem)
+}
 class AddItemTableViewController: UITableViewController , UITextFieldDelegate{
-    
+
     @IBOutlet weak var cancelBarButton: UIBarButtonItem!
     
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     
     @IBOutlet weak var addItemTextField: UITextField!
+    
+    weak var delegate : AddItemViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,11 +48,16 @@ class AddItemTableViewController: UITableViewController , UITextFieldDelegate{
     
     @IBAction func cancel(){
         navigationController?.popViewController(animated: true)
+        delegate?.addItemViewControllerDidCancel(self)
     }
     
     @IBAction func done(){
         navigationController?.popViewController(animated: true)
-        print("Contents of the textField is \(addItemTextField.text!)")
+        
+        let item = CheckListItem()
+        item.text = addItemTextField.text!
+        item.checked = true
+        delegate?.addItemViewController(self, didFinishAdding: item)
     }
     
     // this function to disable the selection of the cell

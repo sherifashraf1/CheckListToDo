@@ -52,7 +52,7 @@
                     <navigationItem key="navigationItem" title="CheckLists" id="5Du-Zm-IQ1">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="e0S-PS-lnB">
                             <connections>
-                                <segue destination="79s-NQ-kTi" kind="show" id="LbF-HC-bRw"/>
+                                <segue destination="79s-NQ-kTi" kind="show" identifier="AddItem" id="LbF-HC-bRw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
