@@ -84,6 +84,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                                     <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <action selector="done" destination="79s-NQ-kTi" eventType="editingDidEndOnExit" id="WJY-ti-TjM"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>

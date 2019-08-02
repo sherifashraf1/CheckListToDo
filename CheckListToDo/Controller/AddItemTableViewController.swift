@@ -18,10 +18,16 @@ class AddItemTableViewController: UITableViewController , UITextFieldDelegate{
         addItemTextField.delegate = self
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        addItemTextField.resignFirstResponder()
-        return false
-    }
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        // press on Done Key that dismiss the keyboard and remove the textField form its become first responder....
+//        addItemTextField.resignFirstResponder()
+//        return false
+//
+//        //resigning the first responder status is one way to close textfield keyboard...
+//    }
+
+    // we can substitue this above method by add a control events by add Did End On Exit event to the done method to make to same functionalty of add button when we press on return or Done key on keyboard
+    
     
     override func viewWillAppear(_ animated: Bool) {
         addItemTextField.becomeFirstResponder()
