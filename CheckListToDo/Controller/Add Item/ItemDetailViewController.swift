@@ -8,18 +8,18 @@
 
 import UIKit
 
-protocol AddItemViewControllerDelegate : class {
-    func addItemViewControllerDidCancel(_ controller : AddItemTableViewController)
-    func addItemViewController(_ controller :  AddItemTableViewController , didFinishAdding item : CheckListItem)
-    func addItemViewController(_ controller :  AddItemTableViewController , didFinishEditing item : CheckListItem)
+protocol ItemDetailViewControllerDelegate : class {
+    func ItemDetailViewControllerDidCancel(_ controller : ItemDetailViewController)
+    func ItemDetailViewController(_ controller :  ItemDetailViewController , didFinishAdding item : CheckListItem)
+    func ItemDetailViewController(_ controller :  ItemDetailViewController , didFinishEditing item : CheckListItem)
     
 }
-class AddItemTableViewController: UITableViewController , UITextFieldDelegate{
+class ItemDetailViewController: UITableViewController , UITextFieldDelegate{
     
     @IBOutlet weak var cancelBarButton: UIBarButtonItem!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     @IBOutlet weak var addItemTextField: UITextField!
-    weak var delegate : AddItemViewControllerDelegate?
+    weak var delegate : ItemDetailViewControllerDelegate?
     var itemToEdit : CheckListItem?
     
     override func viewDidLoad() {
@@ -54,18 +54,18 @@ class AddItemTableViewController: UITableViewController , UITextFieldDelegate{
     
     @IBAction func cancel(){
         navigationController?.popViewController(animated: true)
-        delegate?.addItemViewControllerDidCancel(self)
+        delegate?.ItemDetailViewControllerDidCancel(self)
     }
     
     @IBAction func done(){
         if let itemToEdit = itemToEdit {
             itemToEdit.text = addItemTextField.text!
-            delegate?.addItemViewController(self, didFinishEditing: itemToEdit)
+            delegate?.ItemDetailViewController(self, didFinishEditing: itemToEdit)
         } else {
             let item = CheckListItem()
             item.text = addItemTextField.text!
             item.checked = true
-            delegate?.addItemViewController(self, didFinishAdding: item)
+            delegate?.ItemDetailViewController(self, didFinishAdding: item)
         }
     }
     // this function to disable the selection of the cell

@@ -64,10 +64,10 @@ class CheckListViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddItem" {
-            let controller = segue.destination as! AddItemTableViewController
+            let controller = segue.destination as! ItemDetailViewController
             controller.delegate = self
         } else if segue.identifier == "EditItem" {
-            let controller = segue.destination as! AddItemTableViewController
+            let controller = segue.destination as! ItemDetailViewController
             controller.delegate = self
             if let indexPath = tableView.indexPath(for: sender as! UITableViewCell){
             controller.itemToEdit = items[indexPath.row]
@@ -138,12 +138,12 @@ class CheckListViewController: UITableViewController {
     }
 }
 
-extension CheckListViewController : AddItemViewControllerDelegate {
-    func addItemViewControllerDidCancel(_ controller: AddItemTableViewController) {
+extension CheckListViewController : ItemDetailViewControllerDelegate {
+    func ItemDetailViewControllerDidCancel(_ controller: ItemDetailViewController) {
         navigationController?.popViewController(animated: true)
     }
     
-    func addItemViewController(_ controller: AddItemTableViewController, didFinishEditing item: CheckListItem) {
+    func ItemDetailViewController(_ controller: ItemDetailViewController, didFinishEditing item: CheckListItem) {
         if let index = items.index(of: item){
         let indexPath = IndexPath(row: index, section: 0)
         if let cell = tableView.cellForRow(at: indexPath){
@@ -153,7 +153,7 @@ extension CheckListViewController : AddItemViewControllerDelegate {
     }
     }
     //updates our tableViewController
-    func addItemViewController(_ controller: AddItemTableViewController, didFinishAdding item: CheckListItem) {
+    func ItemDetailViewController(_ controller: ItemDetailViewController, didFinishAdding item: CheckListItem) {
         let newRowIndex = items.count
         items.append(item)
         let indexPath = IndexPath(row: newRowIndex, section: 0)
