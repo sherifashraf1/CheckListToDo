@@ -12,23 +12,23 @@ class CheckListViewController: UITableViewController {
     
     var items : [CheckListItem]
     
-//    @IBAction func addRow(_ sender: Any) {
-//
-//        let newRowIndex = items.count
-//        let item = CheckListItem()
-//
-//        var titles = ["Sherif Ashraf Hassan" , "Osama Ahmed Osman" , "iOS Development" , "IDEA" , "Amr Diab"]
-//
-//        let randomNumber = arc4random_uniform(UInt32(titles.count))
-//        let title = titles[Int(randomNumber)]
-//        item.text = title
-//        item.checked = true
-//        items.append(item)
-//        let indexPath = IndexPath(row: newRowIndex, section: 0)
-//        let indexPathes = [indexPath]
-//        tableView.insertRows(at: indexPathes, with: .automatic)
-//
-//    }
+    //    @IBAction func addRow(_ sender: Any) {
+    //
+    //        let newRowIndex = items.count
+    //        let item = CheckListItem()
+    //
+    //        var titles = ["Sherif Ashraf Hassan" , "Osama Ahmed Osman" , "iOS Development" , "IDEA" , "Amr Diab"]
+    //
+    //        let randomNumber = arc4random_uniform(UInt32(titles.count))
+    //        let title = titles[Int(randomNumber)]
+    //        item.text = title
+    //        item.checked = true
+    //        items.append(item)
+    //        let indexPath = IndexPath(row: newRowIndex, section: 0)
+    //        let indexPathes = [indexPath]
+    //        tableView.insertRows(at: indexPathes, with: .automatic)
+    //
+    //    }
     
     required init?(coder aDecoder: NSCoder) {
         items = [CheckListItem]()
@@ -64,9 +64,15 @@ class CheckListViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddItem" {
-        let controller = segue.destination as! AddItemTableViewController
-        controller.delegate = self
-    }
+            let controller = segue.destination as! AddItemTableViewController
+            controller.delegate = self
+        } else if segue.identifier == "EditItem" {
+            let controller = segue.destination as! AddItemTableViewController
+            controller.delegate = self
+            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell){
+            controller.itemToEdit = items[indexPath.row]
+        }
+        }
     }
     
     override func viewDidLoad() {
@@ -77,20 +83,20 @@ class CheckListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //Note We can Use A viewWithTag() to access a label in the cell and any other comtrols or view with give them a tag......
         // In this case and ordinary wes use the Outlet
-//
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "CheckListItemCell", for: indexPath) as! CheckListItemCell
-//        let item = items[indexPath.row]
-//        cell.lblText.text = item.text
-//        configureCheckMark(for: cell, at: item)
-//        return cell
-          let cell = tableView.dequeueReusableCell(withIdentifier: "CheckListItemCell", for: indexPath)
-          let item = items[indexPath.row]
-            configureText(for: cell, at: item)
-            configureCheckMark(for: cell, at: item)
+        //
+        //        let cell = tableView.dequeueReusableCell(withIdentifier: "CheckListItemCell", for: indexPath) as! CheckListItemCell
+        //        let item = items[indexPath.row]
+        //        cell.lblText.text = item.text
+        //        configureCheckMark(for: cell, at: item)
+        //        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CheckListItemCell", for: indexPath)
+        let item = items[indexPath.row]
+        configureText(for: cell, at: item)
+        configureCheckMark(for: cell, at: item)
         return cell
         
     }
@@ -99,13 +105,14 @@ class CheckListViewController: UITableViewController {
         // first we remove from the model (update the model)
         items.remove(at: indexPath.row)
         // second show to user the row has been deleted (update the tableview)
-//        let indexPaths = [indexPath]
-//        tableView.deleteRows(at: indexPaths, with: .automatic)
+        //        let indexPaths = [indexPath]
+        //        tableView.deleteRows(at: indexPaths, with: .automatic)
         
         tableView.reloadData()
     }
     
     func configureText(for cell : UITableViewCell , at item : CheckListItem){
+        
         let label = cell.viewWithTag(2) as! UILabel
         label.text = item.text
     }
@@ -136,6 +143,15 @@ extension CheckListViewController : AddItemViewControllerDelegate {
         navigationController?.popViewController(animated: true)
     }
     
+    func addItemViewController(_ controller: AddItemTableViewController, didFinishEditing item: CheckListItem) {
+        if let index = items.index(of: item){
+        let indexPath = IndexPath(row: index, section: 0)
+        if let cell = tableView.cellForRow(at: indexPath){
+            configureText(for: cell, at: item)
+        }
+            navigationController?.popViewController(animated: true)
+    }
+    }
     //updates our tableViewController
     func addItemViewController(_ controller: AddItemTableViewController, didFinishAdding item: CheckListItem) {
         let newRowIndex = items.count
@@ -146,6 +162,5 @@ extension CheckListViewController : AddItemViewControllerDelegate {
         navigationController?.popViewController(animated: true)
         
     }
-    
     
 }

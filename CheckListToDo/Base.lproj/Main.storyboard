@@ -136,7 +136,7 @@
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="BgA-00-IiJ">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Done" id="BgA-00-IiJ">
                             <connections>
                                 <action selector="done" destination="79s-NQ-kTi" id="7Vo-af-Frh"/>
                             </connections>
