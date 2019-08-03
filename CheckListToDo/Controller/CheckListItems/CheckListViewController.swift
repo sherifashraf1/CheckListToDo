@@ -12,23 +12,23 @@ class CheckListViewController: UITableViewController {
     
     var items : [CheckListItem]
     
-    @IBAction func addRow(_ sender: Any) {
-        
-        let newRowIndex = items.count
-        let item = CheckListItem()
-        
-        var titles = ["Sherif Ashraf Hassan" , "Osama Ahmed Osman" , "iOS Development" , "IDEA" , "Amr Diab"]
-
-        let randomNumber = arc4random_uniform(UInt32(titles.count))
-        let title = titles[Int(randomNumber)]
-        item.text = title
-        item.checked = true
-        items.append(item)
-        let indexPath = IndexPath(row: newRowIndex, section: 0)
-        let indexPathes = [indexPath]
-        tableView.insertRows(at: indexPathes, with: .automatic)
-        
-    }
+//    @IBAction func addRow(_ sender: Any) {
+//
+//        let newRowIndex = items.count
+//        let item = CheckListItem()
+//
+//        var titles = ["Sherif Ashraf Hassan" , "Osama Ahmed Osman" , "iOS Development" , "IDEA" , "Amr Diab"]
+//
+//        let randomNumber = arc4random_uniform(UInt32(titles.count))
+//        let title = titles[Int(randomNumber)]
+//        item.text = title
+//        item.checked = true
+//        items.append(item)
+//        let indexPath = IndexPath(row: newRowIndex, section: 0)
+//        let indexPathes = [indexPath]
+//        tableView.insertRows(at: indexPathes, with: .automatic)
+//
+//    }
     
     required init?(coder aDecoder: NSCoder) {
         items = [CheckListItem]()
@@ -79,13 +79,20 @@ class CheckListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CheckListItemCell", for: indexPath) as! CheckListItemCell
         //Note We can Use A viewWithTag() to access a label in the cell and any other comtrols or view with give them a tag......
         // In this case and ordinary wes use the Outlet
-        let item = items[indexPath.row]
-        cell.lblText.text = item.text
-        configureCheckMark(for: cell, at: item)
+//
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "CheckListItemCell", for: indexPath) as! CheckListItemCell
+//        let item = items[indexPath.row]
+//        cell.lblText.text = item.text
+//        configureCheckMark(for: cell, at: item)
+//        return cell
+          let cell = tableView.dequeueReusableCell(withIdentifier: "CheckListItemCell", for: indexPath)
+          let item = items[indexPath.row]
+            configureText(for: cell, at: item)
+            configureCheckMark(for: cell, at: item)
         return cell
+        
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -98,11 +105,18 @@ class CheckListViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    func configureText(for cell : UITableViewCell , at item : CheckListItem){
+        let label = cell.viewWithTag(2) as! UILabel
+        label.text = item.text
+    }
+    
     func configureCheckMark(for cell : UITableViewCell , at item : CheckListItem){
+        
+        let label = cell.viewWithTag(1) as! UILabel
         if item.checked{
-            cell.accessoryType = .none
+            label.text = ""
         }else{
-            cell.accessoryType = .checkmark
+            label.text = "√"
         }
         
     }
@@ -115,7 +129,6 @@ class CheckListViewController: UITableViewController {
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
-    
 }
 
 extension CheckListViewController : AddItemViewControllerDelegate {

@@ -60,10 +60,26 @@
 		E005C2D122F2965F00160432 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E0FE39D522F1F4CD008A8837 /* CheckListViewController.swift */,
-				E06D2A9C22F3B03A00FFB9B4 /* AddItemTableViewController.swift */,
+				E066B66F22F50A5200198086 /* CheckListItems */,
+				E066B67022F50A7300198086 /* Add Item */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		E066B66F22F50A5200198086 /* CheckListItems */ = {
+			isa = PBXGroup;
+			children = (
+				E0FE39D522F1F4CD008A8837 /* CheckListViewController.swift */,
+			);
+			path = CheckListItems;
+			sourceTree = "<group>";
+		};
+		E066B67022F50A7300198086 /* Add Item */ = {
+			isa = PBXGroup;
+			children = (
+				E06D2A9C22F3B03A00FFB9B4 /* AddItemTableViewController.swift */,
+			);
+			path = "Add Item";
 			sourceTree = "<group>";
 		};
 		E0FE39C722F1F4CD008A8837 = {

@@ -18,29 +18,51 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="CheckListItemCell" rowHeight="101" id="qHD-B2-koD" customClass="CheckListItemCell" customModule="CheckListToDo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="101"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="CheckListItemCell" rowHeight="78" id="qHD-B2-koD" customClass="CheckListItemCell" customModule="CheckListToDo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="78"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qHD-B2-koD" id="KIQ-tS-gnX">
-                                    <rect key="frame" x="0.0" y="0.0" width="370" height="100.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="77.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKG-ab-EvS">
-                                            <rect key="frame" x="20" y="20" width="330" height="60.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="7tH-8E-Sie">
+                                            <rect key="frame" x="10" y="10" width="322" height="57.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="√" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLh-0a-Leh">
+                                                    <rect key="frame" x="0.0" y="9" width="20" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="3Iq-oO-DmO"/>
+                                                        <constraint firstAttribute="width" constant="20" id="SHe-SG-9nc"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKG-ab-EvS">
+                                                    <rect key="frame" x="29" y="9" width="293" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="KlV-70-LIi"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="tLh-0a-Leh" firstAttribute="leading" secondItem="7tH-8E-Sie" secondAttribute="leading" id="Sy1-o0-fDb"/>
+                                            </constraints>
+                                        </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="gKG-ab-EvS" firstAttribute="top" secondItem="KIQ-tS-gnX" secondAttribute="top" constant="20" id="E9H-Lm-czd"/>
-                                        <constraint firstAttribute="trailing" secondItem="gKG-ab-EvS" secondAttribute="trailing" constant="20" id="KB2-cJ-ZKx"/>
-                                        <constraint firstItem="gKG-ab-EvS" firstAttribute="leading" secondItem="KIQ-tS-gnX" secondAttribute="leading" constant="20" id="TSj-z0-BB2"/>
-                                        <constraint firstAttribute="bottom" secondItem="gKG-ab-EvS" secondAttribute="bottom" constant="20" id="fTh-x3-dGH"/>
+                                        <constraint firstAttribute="trailing" secondItem="7tH-8E-Sie" secondAttribute="trailing" constant="10" id="cir-W3-4ar"/>
+                                        <constraint firstAttribute="bottom" secondItem="7tH-8E-Sie" secondAttribute="bottom" constant="10" id="h29-8c-Rn8"/>
+                                        <constraint firstItem="7tH-8E-Sie" firstAttribute="top" secondItem="KIQ-tS-gnX" secondAttribute="top" constant="10" id="jWF-AN-PRc"/>
+                                        <constraint firstItem="7tH-8E-Sie" firstAttribute="leading" secondItem="KIQ-tS-gnX" secondAttribute="leading" constant="10" id="pH0-UA-Mfe"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="lblText" destination="gKG-ab-EvS" id="ieA-IX-ATP"/>
+                                    <segue destination="79s-NQ-kTi" kind="show" identifier="EditItem" trigger="accessoryAction" id="sfG-8l-AiV"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -59,7 +81,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lxp-PA-CX7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="262" y="127"/>
+            <point key="canvasLocation" x="260.86956521739131" y="126.5625"/>
         </scene>
         <!--Add Item-->
         <scene sceneID="P4s-ad-F0p">
@@ -149,4 +171,7 @@
             <point key="canvasLocation" x="-620" y="127"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="sfG-8l-AiV"/>
+    </inferredMetricsTieBreakers>
 </document>

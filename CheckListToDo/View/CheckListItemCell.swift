@@ -9,7 +9,7 @@
 import UIKit
 
 class CheckListItemCell: UITableViewCell {
-
+    
     @IBOutlet weak var lblText: UILabel!
     
     override func awakeFromNib() {
